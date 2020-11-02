@@ -124,12 +124,12 @@ class _ArticlesListState extends State<ArticlesList>
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          elevation: 2.0,
+                          elevation: 1.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                height: 200,
+                                height: 180,
                                 // margin: EdgeInsets.only(bottom: 5),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
@@ -156,14 +156,14 @@ class _ArticlesListState extends State<ArticlesList>
                                           textStyle: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.grey[600],
-                                              fontSize: 18),
+                                              fontSize: 16),
                                         )),
                                     Text(snapshot.data[index].publishedAt,
                                         style: GoogleFonts.openSans(
                                           textStyle: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.grey[600],
-                                              fontSize: 18),
+                                              fontSize: 16),
                                         )),
                                   ],
                                 ),
@@ -175,7 +175,7 @@ class _ArticlesListState extends State<ArticlesList>
                                       style: GoogleFonts.openSans(
                                         textStyle: TextStyle(
                                             fontWeight: FontWeight.w400,
-                                            fontSize: 18),
+                                            fontSize: 17),
                                       ))),
                             ],
                           ),

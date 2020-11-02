@@ -28,7 +28,6 @@ class _SearchState extends State<Search> {
   }
 
   void getData() async {
-    String url = "";
     String day = '';
     String yday = '';
     String mon = '';
@@ -51,24 +50,10 @@ class _SearchState extends State<Search> {
     } else {
       mon = month.toString();
     }
-    if (query.toLowerCase() == "bbc") {
-      url =
-          "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=d070d9891fc84f519e55c9a7b4577a2e";
-    } else if (query.toLowerCase() == "cnn") {
-      url =
-          "https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=d070d9891fc84f519e55c9a7b4577a2e";
-    } else if (query.toLowerCase() == "reuters") {
-      url =
-          "https://newsapi.org/v2/top-headlines?sources=reuters&apiKey=d070d9891fc84f519e55c9a7b4577a2e";
-    } else if (query.toLowerCase() == "al jazeera") {
-      url =
-          "https://newsapi.org/v2/top-headlines?sources=al-jazeera-english&apiKey=d070d9891fc84f519e55c9a7b4577a2e";
-    } else {
-      url = "https://newsapi.org/v2/top-headlines?q=" +
-          query +
-          "&from=${year}-${mon}-${day}&to=${year}-${mon}-${day}&sortBy=popularity&apiKey=d070d9891fc84f519e55c9a7b4577a2e";
-      print(url);
-    }
+    final String url = "https://newsapi.org/v2/top-headlines?q=" +
+        query +
+        "&sortBy=popularity&language=en&from=${year}-${mon}-${yday}&to=${year}-${mon}-${day}&apiKey=94c6f6736cd4412ab4e4a7cf015f646e";
+    print(url);
     setState(() {
       futureArticles = fetchArticles(url);
     });
@@ -120,7 +105,7 @@ class _SearchState extends State<Search> {
                   filled: true,
                   fillColor: Colors.grey[200],
                   hintText: 'Search',
-                  helperText: 'Search any country, topic or news source',
+                  helperText: 'Search any country or topic. Ex- Coronavirus',
                   errorText: _validate ? 'Error: Search can\'t be empty' : null,
                   helperStyle: TextStyle(fontStyle: FontStyle.italic),
                   errorStyle: TextStyle(fontStyle: FontStyle.italic),
@@ -234,7 +219,7 @@ class _SearchState extends State<Search> {
                                                               FontWeight.w600,
                                                           color:
                                                               Colors.grey[600],
-                                                          fontSize: 18),
+                                                          fontSize: 16),
                                                     )),
                                                 Text(
                                                     snapshot.data[index]
@@ -245,7 +230,7 @@ class _SearchState extends State<Search> {
                                                               FontWeight.w600,
                                                           color:
                                                               Colors.grey[600],
-                                                          fontSize: 18),
+                                                          fontSize: 16),
                                                     )),
                                               ],
                                             ),
@@ -261,7 +246,7 @@ class _SearchState extends State<Search> {
                                                     textStyle: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w400,
-                                                        fontSize: 18),
+                                                        fontSize: 17),
                                                   ))),
                                         ],
                                       ),
