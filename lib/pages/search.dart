@@ -52,7 +52,7 @@ class _SearchState extends State<Search> {
     }
     final String url = "https://newsapi.org/v2/top-headlines?q=" +
         query +
-        "&sortBy=popularity&language=en&from=${year}-${mon}-${yday}&to=${year}-${mon}-${day}&apiKey=94c6f6736cd4412ab4e4a7cf015f646e";
+        "&sortBy=popularity&language=en&apiKey=94c6f6736cd4412ab4e4a7cf015f646e";
     print(url);
     setState(() {
       futureArticles = fetchArticles(url);
@@ -178,13 +178,13 @@ class _SearchState extends State<Search> {
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
-                                      elevation: 2.0,
+                                      elevation: 1.0,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
                                           Container(
-                                            height: 200,
+                                            height: 180,
                                             // margin: EdgeInsets.only(bottom: 5),
                                             decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.only(

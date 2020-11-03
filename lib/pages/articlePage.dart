@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:share/share.dart';
 
 class ArticlePage extends StatefulWidget {
   @override
@@ -21,9 +22,14 @@ class _ArticlePageState extends State<ArticlePage> {
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
+  _onShare(BuildContext context, String url) async {
+    await Share.share(url);
+  }
+
   @override
   Widget build(BuildContext context) {
     String url = "";
+    // String text = "Article link";
     Map data = ModalRoute.of(context).settings.arguments;
     String url_temp = data['url'];
     String site_title = data['site'];
@@ -43,6 +49,12 @@ class _ArticlePageState extends State<ArticlePage> {
           site_title,
           style: Theme.of(context).textTheme.title,
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.share),
+            onPressed: () => _onShare(context, url),
+          ),
+        ],
       ),
       body: Stack(
         children: [

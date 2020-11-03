@@ -34,27 +34,26 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
+
             // backgroundColor: Colors.grey[300],
             appBar: AppBar(
-              // centerTitle: true,
               title: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    FontAwesomeIcons.newspaper,
-                    color: Colors.white,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      'Flutter News',
-                      style: Theme.of(context).textTheme.title,
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.newspaper,
+                      color: Colors.white,
                     ),
-                  ),
-                ],
-              ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        'Flutter News',
+                        style: Theme.of(context).textTheme.title,
+                      ),
+                    )
+                  ]),
               actions: [
                 IconButton(
                   icon: Icon(Icons.search),
@@ -65,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
               bottom: TabBar(
                 tabs: [
+                  Tab(text: 'Top Stories'),
                   Tab(text: 'World'),
                   Tab(text: 'India'),
                 ],
@@ -72,7 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             body: TabBarView(children: [
               ArticlesList(
-                url: Constants.HEADLINE_NEWS_URL,
+                url: Constants.US_NEWS_URL,
+              ),
+              ArticlesList(
+                url: Constants.WORLD_NEWS_URL,
               ),
               ArticlesList(
                 url: Constants.INDIA_NEWS_URL,

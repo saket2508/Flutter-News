@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sandbox/api/constants.dart';
+import 'package:share/share.dart';
 
 String getPublishedAt(String _datetimeobj) {
   var publishTime = DateTime.parse(_datetimeobj);
