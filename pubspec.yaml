@@ -34,6 +34,9 @@ dependencies:
   google_fonts: ^1.1.0
   html: ^0.14.0+3
   async: ^2.4.2
+  sqflite: any
+  path_provider: any
+  provider: ^4.3.2+2
   font_awesome_flutter: ^8.8.1
   flutter_launcher_icons: ^0.8.1
 

@@ -3,8 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import '../widgets/articlesList.dart';
 import 'dart:async';
 import 'package:sandbox/api/constants.dart';
+import '../models/article.dart';
 
 class Search extends StatefulWidget {
+  Search({Key key}) : super(key: key);
   @override
   _SearchState createState() => _SearchState();
 }
@@ -199,17 +201,38 @@ class _SearchState extends State<Search> {
                                                             null
                                                         ? AssetImage(Constants
                                                             .NEWS_PLACEHOLDER_IMAGE_ASSET_URL)
-                                                        : NetworkImage(
-                                                            snapshot.data[index]
-                                                                .urlToImage,
-                                                          ))),
+                                                        : NetworkImage(snapshot
+                                                            .data[index]
+                                                            .urlToImage))),
                                           ),
+                                          Padding(
+                                              padding: const EdgeInsets.all(8),
+                                              child: Text(
+                                                  snapshot.data[index].title,
+                                                  style: GoogleFonts.openSans(
+                                                    textStyle: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 17),
+                                                  ))),
+                                          Padding(
+                                              padding: const EdgeInsets.all(6),
+                                              child: Text(
+                                                  snapshot
+                                                      .data[index].description,
+                                                  style: GoogleFonts.openSans(
+                                                    textStyle: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontSize: 15),
+                                                  ))),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
                                               children: [
                                                 Text(
                                                     snapshot.data[index].source,
@@ -219,8 +242,22 @@ class _SearchState extends State<Search> {
                                                               FontWeight.w600,
                                                           color:
                                                               Colors.grey[600],
-                                                          fontSize: 16),
+                                                          fontSize: 14),
                                                     )),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 4, right: 4),
+                                                  child: Container(
+                                                    height: 2,
+                                                    width: 2,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        color: Colors.grey),
+                                                  ),
+                                                ),
                                                 Text(
                                                     snapshot.data[index]
                                                         .publishedAt,
@@ -230,24 +267,20 @@ class _SearchState extends State<Search> {
                                                               FontWeight.w600,
                                                           color:
                                                               Colors.grey[600],
-                                                          fontSize: 16),
+                                                          fontSize: 12),
                                                     )),
                                               ],
                                             ),
                                           ),
-                                          Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8.0,
-                                                      vertical: 4),
-                                              child: Text(
-                                                  snapshot.data[index].title,
-                                                  style: GoogleFonts.openSans(
-                                                    textStyle: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 17),
-                                                  ))),
+                                          // Padding(
+                                          //     padding: const EdgeInsets.symmetric(
+                                          //         horizontal: 8.0, vertical: 4),
+                                          //     child: Text(snapshot.data[index].title,
+                                          //         style: GoogleFonts.openSans(
+                                          //           textStyle: TextStyle(
+                                          //               fontWeight: FontWeight.w400,
+                                          //               fontSize: 17),
+                                          //         ))),
                                         ],
                                       ),
                                     ),

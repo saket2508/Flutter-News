@@ -15,7 +15,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // int _counter = 0;
   // Future<List<Article>> futureArticles;
 
   @override
@@ -25,35 +25,27 @@ class _MyHomePageState extends State<MyHomePage> {
     // futureArticles = fetchArticles();
   }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 3,
         child: Scaffold(
-
             // backgroundColor: Colors.grey[300],
             appBar: AppBar(
-              title: Row(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      FontAwesomeIcons.newspaper,
-                      color: Colors.white,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        'Flutter News',
-                        style: Theme.of(context).textTheme.title,
-                      ),
-                    )
-                  ]),
+              title:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Icon(
+                  FontAwesomeIcons.newspaper,
+                  color: Colors.white,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    'Flutter News',
+                    style: Theme.of(context).textTheme.title,
+                  ),
+                )
+              ]),
               actions: [
                 IconButton(
                   icon: Icon(Icons.search),

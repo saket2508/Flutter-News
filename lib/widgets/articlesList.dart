@@ -5,61 +5,62 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sandbox/api/constants.dart';
 import 'package:share/share.dart';
+import '../models/article.dart';
 
-String getPublishedAt(String _datetimeobj) {
-  var publishTime = DateTime.parse(_datetimeobj);
-  var now = DateTime.now();
-  var difference = now.difference(publishTime);
-  // print(difference.inMinutes);
-  String timeDiff = "";
-  var minutes = difference.inMinutes;
-  var hours = difference.inHours;
-  var days = difference.inDays;
-  if (minutes == 0 || minutes == 1) {
-    timeDiff = minutes.toString() + "m ago";
-  } else if (minutes > 1 && minutes < 60) {
-    timeDiff = minutes.toString() + "m ago";
-  } else if (hours == 1 && days == 0) {
-    timeDiff = hours.toString() + "h ago";
-  } else if (hours > 1 && days == 0) {
-    timeDiff = hours.toString() + "h ago";
-  } else {
-    timeDiff = days.toString() + "d ago";
-  }
-  print(timeDiff);
-  return timeDiff;
-}
+// String getPublishedAt(String _datetimeobj) {
+//   var publishTime = DateTime.parse(_datetimeobj);
+//   var now = DateTime.now();
+//   var difference = now.difference(publishTime);
+//   // print(difference.inMinutes);
+//   String timeDiff = "";
+//   var minutes = difference.inMinutes;
+//   var hours = difference.inHours;
+//   var days = difference.inDays;
+//   if (minutes == 0 || minutes == 1) {
+//     timeDiff = minutes.toString() + "m ago";
+//   } else if (minutes > 1 && minutes < 60) {
+//     timeDiff = minutes.toString() + "m ago";
+//   } else if (hours == 1 && days == 0) {
+//     timeDiff = hours.toString() + "h ago";
+//   } else if (hours > 1 && days == 0) {
+//     timeDiff = hours.toString() + "h ago";
+//   } else {
+//     timeDiff = days.toString() + "d ago";
+//   }
+//   print(timeDiff);
+//   return timeDiff;
+// }
 
-class Article {
-  final String title;
-  final String url;
-  final String description;
-  final String source;
-  final String urlToImage;
-  final String publishedAt;
+// class Article {
+//   final String title;
+//   final String url;
+//   final String description;
+//   final String source;
+//   final String urlToImage;
+//   final String publishedAt;
 
-  List<Article> newsArticles = [];
+//   List<Article> newsArticles = [];
 
-  Article(
-      {this.title,
-      this.description,
-      this.urlToImage,
-      this.source,
-      this.url,
-      this.publishedAt});
+//   Article(
+//       {this.title,
+//       this.description,
+//       this.urlToImage,
+//       this.source,
+//       this.url,
+//       this.publishedAt});
 
-  factory Article.fromJson(Map<dynamic, dynamic> json) {
-    Iterable list = json['articles'];
-    List<Article> dataArticles = [];
-    return Article(
-        description: json['description'],
-        publishedAt: getPublishedAt(json['publishedAt']),
-        url: json['url'],
-        source: json['source']['name'],
-        title: json['title'],
-        urlToImage: json['urlToImage']);
-  }
-}
+//   factory Article.fromJson(Map<dynamic, dynamic> json) {
+//     Iterable list = json['articles'];
+//     List<Article> dataArticles = [];
+//     return Article(
+//         description: json['description'],
+//         publishedAt: getPublishedAt(json['publishedAt']),
+//         url: json['url'],
+//         source: json['source']['name'],
+//         title: json['title'],
+//         urlToImage: json['urlToImage']);
+//   }
+// }
 
 Future<List<Article>> fetchArticles(url) async {
   final response = await http.get(url);
@@ -147,37 +148,65 @@ class _ArticlesListState extends State<ArticlesList>
                                                 .data[index].urlToImage))),
                               ),
                               Padding(
+                                  padding: const EdgeInsets.all(8),
+                                  child: Text(snapshot.data[index].title,
+                                      style: GoogleFonts.openSans(
+                                        textStyle: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 17),
+                                      ))),
+                              Padding(
+                                  padding: const EdgeInsets.all(6),
+                                  child: Text(snapshot.data[index].description,
+                                      style: GoogleFonts.openSans(
+                                        textStyle: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 15),
+                                      ))),
+                              Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(snapshot.data[index].source,
                                         style: GoogleFonts.openSans(
                                           textStyle: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.grey[600],
-                                              fontSize: 16),
+                                              fontSize: 14),
                                         )),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 4, right: 4),
+                                      child: Container(
+                                        height: 2,
+                                        width: 2,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: Colors.grey),
+                                      ),
+                                    ),
                                     Text(snapshot.data[index].publishedAt,
                                         style: GoogleFonts.openSans(
                                           textStyle: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.grey[600],
-                                              fontSize: 16),
+                                              fontSize: 12),
                                         )),
                                   ],
                                 ),
                               ),
-                              Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0, vertical: 4),
-                                  child: Text(snapshot.data[index].title,
-                                      style: GoogleFonts.openSans(
-                                        textStyle: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 17),
-                                      ))),
+                              // Padding(
+                              //     padding: const EdgeInsets.symmetric(
+                              //         horizontal: 8.0, vertical: 4),
+                              //     child: Text(snapshot.data[index].title,
+                              //         style: GoogleFonts.openSans(
+                              //           textStyle: TextStyle(
+                              //               fontWeight: FontWeight.w400,
+                              //               fontSize: 17),
+                              //         ))),
                             ],
                           ),
                         ),
@@ -201,6 +230,6 @@ class _ArticlesListState extends State<ArticlesList>
     setState(() {
       futureArticles = fetchArticles(widget.url);
     });
-    print('refreshed list');
+    // print('refreshed list');
   }
 }
